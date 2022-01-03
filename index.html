@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{{ url_for('static', filename='cat.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Catabase</title>
+</head>
+<body>
+    
+    {% if message %}
+        <div class="message col-md-5 alert alert-danger">{{message}}</div>
+    {% endif %}
+
+    <div class="index_main">
+        <h1>CataBase - Worldwide Cat Database</h1>
+
+        <form action="/addcat">
+            <button class="btn btn-primary btn-lg">Add Cat</button>
+        </form>
+        <form method="post" class="edit_form">
+            <input class="form-control" name="cat_id" type="text" placeholder="Type Cat ID" required/>
+            <input type="submit" class="btn btn-default btn-lg"/>
+        </form>
+        <form action="/searchcat">
+            <button class="btn btn-primary btn-lg">Search Cat</button>
+        </form>
+    </div>
+
+
+    <!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
+
+</body>
+</html>

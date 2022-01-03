@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{{ url_for('static', filename='cat.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+    </script>  
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+    </script>  
+    
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    {% if cat_info["name"] %}
+    <title>Edit Cat</title>
+    {% endif %}
+    
+    {% if not cat_info["name"] %}
+       <title>Add Cat</title>
+    {% endif %}
+</head>
+<body>
+    {% if message %}
+        <div class="message col-md-5 alert alert-success">{{message}}</div>
+    {% endif %}
+
+    
+    <div class="add_main">
+
+        {% if cat_info["name"] %}
+            <h1>Edit Cat</h1>
+        {% endif %}
+        
+        {% if not cat_info["name"] %}
+           <h1>Add Cat</h1>
+        {% endif %}
+
+        <form action="" method="POST" class="add_form">
+            <label for="name">Name
+                <input value="{{cat_info['name']}}" name="name" class="form-control" type="text" required/>
+            </label>
+            
+            <label for="age">Age (full years)
+                <input value="{{cat_info['age']}}" name="age" class="form-control" type="number"/>
+            </label>
+            
+            <label for="sex">Sex
+                <select class="form-select" name="sex">
+                    <option selected="selected" value="{{cat_info['sex']}}"></option>
+                    {% for option in sex_options %}
+                    <option value="{{option['name']}}">{{option['name']}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            
+            <label for="breed">Breeds
+                <input value="{{cat_info['breed']}}" name="breed" class="form-control" type="text" id="breed"/>
+            </label>
+            
+            <label for="left_color">Left Eye Color
+                <input value="{{cat_info['left_eye']}}" name="left_color" class="form-control eye_color" type="text" id="left_color"/>
+            </label>
+            
+            <label for="right_color">Right Eye Color
+                <input value="{{cat_info['right_color']}}" name="right_color" class="form-control eye_color" type="text" id="right_color"/>
+            </label>
+            
+            <label for="fur_color">Fur Color
+                <input value="{{cat_info['fur_color']}}" name="fur_color" class="form-control" type="text" id="fur_color"/>
+            </label>
+            
+            <label for="country">Country
+                <input value="{{cat_info['country']}}" name="country" class="form-control" type="text" id="country"/>
+            </label>
+            
+            <label for="owner_name">Owner Name
+                <input value="{{cat_info['owner']}}" name="owner_name" class="form-control" type="text"/>
+            </label>
+            
+            <label for="photo_url">Photo (url)
+                <input value="{{cat_info['photo_url']}}" name="photo_url" class="form-control" type="text"/>
+            </label>
+            
+            <label for="desc">Description (any additional info)
+                <textarea name="desc" class="form-control" type="text">{{cat_info['description']}}</textarea>
+            </label>
+
+            <div class="btn-group">
+                <input type="submit" class="btn btn-primary btn-lg" id="submit_btn" name="submit" value="Submit">
+
+                {% if cat_info["name"] %}
+                    <input type="submit" name="delete" class="btn btn-danger btn-lg" value="Delete">
+                {% endif %}
+            </div>
+            
+        </form>
+        <a href="/" class="btn btn-light btn-lg back_btn">Back to Main Page</a>
+    </div>
+    
+    
+<script src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+
+</body>
+</html>
